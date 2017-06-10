@@ -1,0 +1,42 @@
+p {
+  font-size: 15px;
+  padding: 0px
+  margin: 0px;
+}
+
+a {
+  font-size: 20px;
+  padding: 0px
+  margin: 0px;
+}
+
+body {
+  background-image: url(../assets/bg.jpg);
+}
+
+#Container {
+/*  width: 100%;
+  height: auto;*/
+}
+
+#PostContainer {
+  border: solid 1px white;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#box {
+ /* border: solid 1px white;
+  display: flex;
+  flex-direction: row;
+  flex-flow: column wrap;*/
+  flex: 1 0 40%;
+  box-sizing: border-box;
+  background-color: white;
+  margin: 8px;
+}
+
+.Images {
+  width: 25%;
+  height: 25%;
+}
