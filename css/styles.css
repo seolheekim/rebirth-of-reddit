@@ -1,28 +1,23 @@
-/*p {
-  font-size: 15px;
-  padding: 0px
+body {
+  background-image: url(../assets/bg.jpg);
   margin: 0px;
-}*/
+}
 
 a {
   text-decoration: none;
-  color: #262626;
+  color: #9b9999;
   font-family: 'Oswald', sans-serif;
   font-size: 20px;
   padding: 0px
   margin: 0px;
-  float: left;
 
 }
 
 a:hover {
-  color: #7c7c7c;
+  color: #9b9999;
+
 }
 
-body {
-  background-image: url(../assets/bg.jpg);
-  height: 100%
-}
 
 footer {
   background-color: #333;
@@ -55,7 +50,7 @@ footer {
   font-family: 'Oswald', sans-serif;
 }
 
-ul{
+ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -63,22 +58,20 @@ ul{
   background-color: #3A3A3C;
   display: flex;
   justify-content: center;
+
 }
 
-li{
-  float: left;
-}
-
-li a{
+li {
   display: block;
   color: #9b9999;
   text-align: center;
-  padding: 14px 16px;
+  padding: 4px 15px;
   text-decoration: none;
+  font-size: 19px;
 }
 
 li a:hover{
-  background-color: #111;
+ color: #9b9999;
 }
 
 #Container {
@@ -94,39 +87,57 @@ li a:hover{
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 90%;
+/*  width: 70%;*/
+/*  flex-direction: row;*/
 }
 
 #box {
-  flex: 0 0 46%;
+/*  flex: 1 0 40%;*/
   background-color: white;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   display: flex;
-  height: 48%;
-  margin-right: 17px;
-  margin-left: 17px;
-
+  flex-direction: column;
+  display: flex;
+  margin: 10px;
+  width: 32%;
+ /* height: 42%;
+  margin-right: 9px;
+  margin-left: 9px;
+*/
+  align-items: baseline;
 }
 
 .imgDiv {
-  width: 88%;
-  height: 59%;
+  width: 95%;
+  height: 20rem;
+/*  display: flex;
+  justify-content: center;
+  margin-top: 9px;
+  margin-left: -13px;*/
+  margin: 10px;
 }
 
 .Images {
   width: 100%;
   height: 100%;
   object-fit: cover;
+/*  display: flex;
+  justify-content: center;*/
+}
+
+.contentBox {
+  margin: 4px;
+  padding: 10px;
 }
 
 .Titles {
-  text-decoration: none;
+  display: flex;
+  flex-direction: row;
   color: #262626;
   font-family: 'Oswald', sans-serif;
-  font-size: 23px;
-  padding: 8px 0px 5px 0px;
+  font-size: 26px;
+  margin-top: -15px;
+
+
 }
 
 .Titles:hover {
@@ -135,18 +146,47 @@ li a:hover{
 
 .Author {
   color: #262626;
-  font-family: 'Lato', sans-serif;
-  float: left;
+  font-family: 'Oswald', sans-serif;
+  font-size: 16px;
+  margin-right: 12px;
+  margin-left: 1px;
+  letter-spacing: 0.5px
+
+
 }
 
 .CommentsCount {
   text-decoration: none;
   color: #262626;
   font-family: 'Oswald', sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+
 }
 
 .timeStamp {
   text-decoration: none;
   color: #262626;
   font-family: 'Oswald', sans-serif;
+  margin-top: -2px;
+  font-size: 13px;
+  margin-left: 1px;
+
+}
+
+.readMe {
+  text-decoration: none;
+  color: #262626;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  line-height: 21px;
+  letter-spacing: 0.1px;
+}
+
+#insta {
+  margin-right: 5px;
+}
+
+#face {
+  margin-left: 5px;
 }
