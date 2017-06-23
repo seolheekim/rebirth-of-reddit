@@ -3,9 +3,11 @@
 
   function reqRedditListener(){
     var res = JSON.parse(this.responseText);
-    // console.log("HI", res)
+    console.log(res)
     // console.log(res.data.children)
     // console.log(res.data.title)
+    // console.log(res.data.children[0].data.preview.images[0].source.url)
+
     var mainContainer = document.getElementById("Container");
 
     var postContainer = document.createElement("div");
@@ -13,70 +15,121 @@
     mainContainer.appendChild(postContainer);
 
     var currentPost;
+    // var imageUrl = currentPost.preview.images[0].source.url;
 
     for(var i = 0; i < res.data.children.length; i++){
-      for(var x = 0; x < 4; x++){
-        currentPost = res.data.children[x].data;
-        if(currentPost.stickied === false) {
+        currentPost = res.data.children[i].data;
 
         var newDiv = document.createElement("div");
         newDiv.id = "box"
         postContainer.appendChild(newDiv)
 
-        for(var s = 0; s < currentPost.preview.images[0]; s++) {
-
         var newImgDiv = document.createElement("div");
         newImgDiv.className = "imgDiv";
         newDiv.appendChild(newImgDiv);
 
-        var img = document.createElement("img");
-        img.src = currentPost.images[0].source.url
-        img.className = "Images";
-        img.setAttribute('href', currentPost.url);
-        newImgDiv.appendChild(img);
+        var imgage = document.createElement("img");
+        imgage.className = "Images";
+        imgage.src = res.data.children[i].data.preview.images[0].source.url;
+        newImgDiv.appendChild(imgage);
 
-         function imageError(images){
-          var replaceImages = document.getElementsByClassName("Images");
-          if(replaceImages === null){
-            replaceImages.src = "/assets/image_placeholder.png";
-          }
-         }//ending imageError function
-        }//ending image forloop
+        var contentBox = document.createElement("div");
+        contentBox.className = "contentBox";
+        newDiv.appendChild(contentBox);
 
         var titles = document.createElement("a");
         titles.className = "Titles";
         titles.setAttribute('href', currentPost.url);
         titles.innerHTML = currentPost.title;
-        // console.log(res.data.children[i].title)
-        // console.log(res.data.children[x])
-        newDiv.appendChild(titles);
+        contentBox.appendChild(titles);
 
         var author = document.createElement("a");
         author.className = "Author";
         author.setAttribute('href', currentPost.url);
         author.innerHTML = "by " + currentPost.author;
-        newDiv.appendChild(author);
+        contentBox.appendChild(author);
+
+        var linkToComments = "http://www.reddit.com" + currentPost.permalink;
 
         var commentsCount = document.createElement("a");
         commentsCount.className = "CommentsCount";
-        commentsCount.innerHTML = "comments ".link("http://www.reddit.com" + currentPost.permalink) + currentPost.num_comments;
-        newDiv.appendChild(commentsCount);
+        commentsCount.setAttribute('href', linkToComments);
+        commentsCount.innerHTML = "comments " + currentPost.num_comments;
+        contentBox.appendChild(commentsCount);
 
         var timeStamp = document.createElement("p");
         timeStamp.className = "timeStamp";
         timeStamp.innerHTML = new Date(currentPost.created * 1000)
-        newDiv.appendChild(timeStamp);
+        contentBox.appendChild(timeStamp);
 
-      }//endings post count forloop
-    }// ending stickied if statment
+        var readMe = document.createElement("div");
+        readMe.className = "readMe";
+        readMe.innerHTML = "Puppy kitty ipsum dolor sit good dog walk scooby snacks twine vaccine run wet nose tooth. Run Fast furry polydactyl heel behavior vitamins Spike wet nose Buddy."
+        contentBox.appendChild(readMe);
+
+
   }//ending my forloop for res data
 }// ending my reqRedditListener function
+function requestData(url){
+    var oReq = new XMLHttpRequest();
+    oReq.addEventListener("load", reqRedditListener);
+    oReq.open("GET", url);
+    oReq.send();
+  }// ending requestData function
+requestData('https://www.reddit.com/r/FoodPorn.json');
 
-var rReq = new XMLHttpRequest();
-rReq.addEventListener('load', reqRedditListener);
-rReq.open('GET', `https://www.reddit.com/r/schnauzer.json`);
-rReq.send();
+  var randomButton = document.getElementById("random");
+  var myBoardsButton = document.getElementById("myBoards");
+  var getTheAppButton = document.getElementById("getTheApp");
 
-// console.log("hello are you there?")
+  var randomArray = ["https://www.reddit.com/r/puppies.json", "https://www.reddit.com/r/MechanicalKeyboards.json", "https://www.reddit.com/r/cats.json", "https://www.reddit.com/r/Art.json"];
+  var makeItRandom = randomArray[Math.floor(randomArray.length)]
+
+  var myBoardsArray = ["https://www.reddit.com/r/VeganFoodPorn.json"];
+  var getTheAppArray = ["https://www.reddit.com/r/gaming.json"];
+  var logoArray = ["https://www.reddit.com/r/FoodPorn.json"];
+
+  function addButton(array, button, name){
+
+    var createButton = document.createElement("button");
+    createButton.className = "button";
+    createButton.innerHTML = name;
+    createButton.setAttribute('href', array);
+    button.appendChild(createButton);
+  }
+
+  addButton(randomArray, randomButton, "RANDOM");
+  addButton(myBoardsArray, myBoardsButton, "MY BOARDS");
+  addButton(getTheAppArray, getTheAppButton, "GET THE APP");
+
+    randomButton.addEventListener("click", function() {
+      var getRandomHTML = document.getElementById("Container");
+      getRandomHTML.innerHTML = "";
+      requestData(makeItRandom);
+    });
+
+     myBoardsButton.addEventListener("click", function() {
+      var getMyBoardHTML = document.getElementById("Container");
+      getMyBoardHTML.innerHTML = "";
+      requestData(myBoardsArray);
+    });
+
+     getTheAppButton.addEventListener("click", function() {
+      var getTheAppHTML = document.getElementById("Container");
+      getTheAppHTML.innerHTML = "";
+      requestData(getTheAppArray);
+    });
+
+     var logoButton = document.getElementById("logo");
+      logoButton.addEventListener("click", function() {
+      var logoHTML = document.getElementById("Container");
+      logoHTML.innerHTML = "";
+      requestData(logoArray);
+    });
+
+
+
+
+  // addClick(randomButton, );
 
 })()// ending my iife function
